@@ -1,0 +1,43 @@
+{
+  "name": "git-config-path",
+  "description": "Resolve the path to the user's global .gitconfig.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/git-config-path",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/git-config-path.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/git-config-path/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/jonschlinkert/git-config-path/blob/master/LICENSE"
+  },
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": [
+    "config",
+    "git",
+    "gitconfig",
+    "global",
+    "path",
+    "resolve"
+  ]
+}
