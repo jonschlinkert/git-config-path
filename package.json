@@ -50,6 +50,9 @@
         "parse-git-config"
       ]
     },
+    "reflinks": [
+      "verb"
+    ],
     "lint": {
       "reflinks": true
     }
