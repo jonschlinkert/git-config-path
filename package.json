@@ -1,7 +1,7 @@
 {
   "name": "git-config-path",
   "description": "Resolve the path to the user's global .gitconfig.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/jonschlinkert/git-config-path",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/git-config-path",
@@ -24,8 +24,7 @@
   },
   "devDependencies": {
     "gulp-format-md": "^0.1.7",
-    "mocha": "*",
-    "should": "*"
+    "mocha": "^2.4.5"
   },
   "keywords": [
     "config",
