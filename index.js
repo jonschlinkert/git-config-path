@@ -9,15 +9,26 @@
 
 var fs = require('fs');
 var path = require('path');
-var home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+var home = require('os-homedir');
 
-var gitconfig = path.join(home, '.gitconfig');
-
-if (!fs.existsSync(gitconfig)) {
-  gitconfig = path.join(home, '.config/git/config');
-  if (!fs.existsSync(gitconfig)) {
-    gitconfig = null;
+module.exports = function(type) {
+  var configPath = path.join(process.cwd(), '.git/config');
+  if (!exists(configPath) || type === 'global') {
+    configPath = path.join(home(), '.gitconfig');
   }
-}
+  if (!exists(configPath)) {
+    configPath = path.join(home(), '.config/git/config');
+  }
+  if (!exists(configPath)) {
+    configPath = null;
+  }
+  return configPath;
+};
 
-module.exports = gitconfig;
+function exists(fp) {
+  try {
+    fs.statSync(fp);
+    return true;
+  } catch (err) {}
+  return false;
+}
