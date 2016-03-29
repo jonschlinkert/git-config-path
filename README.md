@@ -1,6 +1,6 @@
 # git-config-path [![NPM version](https://img.shields.io/npm/v/git-config-path.svg?style=flat)](https://www.npmjs.com/package/git-config-path) [![NPM downloads](https://img.shields.io/npm/dm/git-config-path.svg?style=flat)](https://npmjs.org/package/git-config-path) [![Build Status](https://img.shields.io/travis/jonschlinkert/git-config-path.svg?style=flat)](https://travis-ci.org/jonschlinkert/git-config-path)
 
-> Resolve the path to the user's global .gitconfig.
+> Resolve the path to the user's local or global .gitconfig.
 
 ## Install
 
@@ -30,7 +30,12 @@ var gitConfigPath = require('git-config-path')('global');
 
 You might also be interested in these projects:
 
-[parse-git-config](https://www.npmjs.com/package/parse-git-config): Parse `.git/config` into a JavaScript object. sync or async. | [homepage](https://github.com/jonschlinkert/parse-git-config)
+* [git-branch](https://www.npmjs.com/package/git-branch): Get the current branch for a local git repository. | [homepage](https://github.com/jonschlinkert/git-branch)
+* [git-repo-name](https://www.npmjs.com/package/git-repo-name): Get the repository name from the git remote origin URL. | [homepage](https://github.com/jonschlinkert/git-repo-name)
+* [git-user-name](https://www.npmjs.com/package/git-user-name): Get a user's name from git config at the project or global scope, depending on… [more](https://www.npmjs.com/package/git-user-name) | [homepage](https://github.com/jonschlinkert/git-user-name)
+* [git-username](https://www.npmjs.com/package/git-username): Get the username from a git remote origin URL. | [homepage](https://github.com/jonschlinkert/git-username)
+* [is-git-url](https://www.npmjs.com/package/is-git-url): Regex to validate that a URL is a git url. | [homepage](https://github.com/jonschlinkert/is-git-url)
+* [parse-git-config](https://www.npmjs.com/package/parse-git-config): Parse `.git/config` into a JavaScript object. sync or async. | [homepage](https://github.com/jonschlinkert/parse-git-config)
 
 ## Contributing
 
