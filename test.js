@@ -1,17 +1,32 @@
-/*!
- * git-config-path <https://github.com/jonschlinkert/git-config-path>
- *
- * Copyright (c) 2015 Jon Schlinkert.
- * Licensed under the MIT license.
- */
-
 'use strict';
 
-var should = require('should');
+require('mocha');
+var fs = require('fs');
+var path = require('path');
+var assert = require('assert');
+var home = require('os-homedir');
 var gitconfig = require('./');
 
-describe('gitconfig', function () {
-  it('should resolve the path to the global .gitconfig:', function () {
-    gitconfig.should.match(/jonschlinkert\/\.gitconfig/);
+describe('gitconfig', function() {
+  it('should resolve the path to the local .gitconfig:', function() {
+    var fp = path.resolve(process.cwd(), '.git/config');
+    if (exists(fp)) {
+      assert.equal(fp, gitconfig());
+    }
+  });
+
+  it('should resolve the path to the global .gitconfig:', function() {
+    var fp = path.resolve(home(), '.gitconfig');
+    if (exists(fp)) {
+      assert.equal(fp, gitconfig('global'));
+    }
   });
 });
+
+function exists(fp) {
+  try {
+    fs.statSync(fp);
+    return true;
+  } catch (err) {}
+  return false;
+}
