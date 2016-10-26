@@ -7,28 +7,19 @@
 
 'use strict';
 
-var fs = require('fs');
 var path = require('path');
-var home = require('os-homedir');
+var exists = require('fs-exists-sync');
+var extend = require('extend-shallow');
+var homedir = require('homedir-polyfill');
 
-module.exports = function(type) {
-  var configPath = path.join(process.cwd(), '.git/config');
-  if (!exists(configPath) || type === 'global') {
-    configPath = path.join(home(), '.gitconfig');
+module.exports = function(type, options) {
+  var opts = extend({cwd: process.cwd()}, options);
+  var configPath = path.resolve(opts.cwd, '.git/config');
+  if (type === 'global') {
+    configPath = path.join(homedir(), '.gitconfig');
   }
   if (!exists(configPath)) {
-    configPath = path.join(home(), '.config/git/config');
+    configPath = path.join(homedir(), '.config/git/config');
   }
-  if (!exists(configPath)) {
-    configPath = null;
-  }
-  return configPath;
+  return exists(configPath) ? configPath : null;
 };
-
-function exists(fp) {
-  try {
-    fs.statSync(fp);
-    return true;
-  } catch (err) {}
-  return false;
-}

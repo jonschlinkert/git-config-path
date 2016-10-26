@@ -20,7 +20,9 @@
     "test": "mocha"
   },
   "dependencies": {
-    "os-homedir": "^1.0.1"
+    "extend-shallow": "^2.0.1",
+    "fs-exists-sync": "^0.1.0",
+    "homedir-polyfill": "^1.0.0"
   },
   "devDependencies": {
     "gulp-format-md": "^0.1.7",
@@ -46,11 +48,11 @@
     ],
     "related": {
       "list": [
-        "is-git-url",
         "git-branch",
+        "git-repo-name",
         "git-user-name",
         "git-username",
-        "git-repo-name",
+        "is-git-url",
         "parse-git-config"
       ]
     },
