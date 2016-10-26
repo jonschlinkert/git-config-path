@@ -12,12 +12,15 @@ describe('gitconfig', function() {
     var fp = path.resolve(process.cwd(), '.git/config');
     if (exists(fp)) {
       assert.equal(fp, gitconfig());
+      assert.equal(fp, gitconfig('local'));
+      assert.equal(fp, gitconfig({type: 'local'}));
     }
   });
 
   it('should resolve the path to the global .gitconfig:', function() {
     var fp = path.resolve(homedir(), '.gitconfig');
     if (exists(fp)) {
+      assert.equal(fp, gitconfig({type: 'global'}));
       assert.equal(fp, gitconfig('global'));
     }
   });
