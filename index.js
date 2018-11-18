@@ -1,16 +1,15 @@
 /*!
  * git-config-path <https://github.com/jonschlinkert/git-config-path>
  *
- * Copyright (c) 2015, Jon Schlinkert.
+ * Copyright (c) 2015-present, Jon Schlinkert.
  * Licensed under the MIT License.
  */
 
 'use strict';
 
-var path = require('path');
-var exists = require('fs-exists-sync');
-var extend = require('extend-shallow');
-var homedir = require('homedir-polyfill');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
 
 module.exports = function(type, options) {
   if (typeof type !== 'string') {
@@ -18,20 +17,19 @@ module.exports = function(type, options) {
     type = null;
   }
 
-  var opts = extend({cwd: process.cwd()}, options);
-  type = type || opts.type;
+  let opts = Object.assign({ cwd: process.cwd(), type }, options);
+  let configPath;
 
-  var configPath = path.resolve(opts.cwd, '.git/config');
-  if (type === 'global') {
-    configPath = path.join(homedir(), '.gitconfig');
+  if (opts.type === 'global') {
+    configPath = path.join(os.homedir(), '.gitconfig');
+  } else {
+    configPath = path.resolve(opts.cwd, '.git/config');
   }
 
-  if (!exists(configPath)) {
-    if (typeof type === 'string') {
-      return null;
-    }
-    configPath = path.join(homedir(), '.config/git/config');
+  if (!fs.existsSync(configPath)) {
+    if (typeof opts.type === 'string') return null;
+    configPath = path.join(os.homedir(), '.config/git/config');
   }
 
-  return exists(configPath) ? configPath : null;
+  return fs.existsSync(configPath) ? configPath : null;
 };
